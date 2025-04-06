@@ -59,7 +59,6 @@
 	--rti-s: 0.5rem;
 	--rti-tag: #edf2f7;
 	--rti-tag-remove: #e53e3e;
-	border: none;
 }
 .rti--container .rti--input {
 	background-color: rgb(var(--color-secondary-200));
