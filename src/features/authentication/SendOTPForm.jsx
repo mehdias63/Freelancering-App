@@ -3,9 +3,9 @@ import TextField from '../../ui/TextField'
 import { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import toast from 'react-hot-toast'
+import Loading from '../../ui/Loading'
 
-function SendOTPForm() {
-	const [phoneNumber, setPhoneNumber] = useState('')
+function SendOTPForm({ setStep, phoneNumber, onChange }) {
 	const { isPending, error, data, mutateAsync } = useMutation({
 		mutationFn: getOtp,
 	})
@@ -25,12 +25,16 @@ function SendOTPForm() {
 					label="شماره موبایل"
 					name="phoneNumber"
 					value={phoneNumber}
-					onChange={e => setPhoneNumber(e.target.value)}
+					onChange={onChange}
 				/>
 				<div>
-					<button type="submit" className="btn btn--primary w-full">
-						ارسال کد تایید
-					</button>
+					{isPending ? (
+						<Loading />
+					) : (
+						<button type="submit" className="btn btn--primary w-full">
+							ارسال کد تایید
+						</button>
+					)}
 				</div>
 			</form>
 		</div>
