@@ -1,8 +1,27 @@
 import { useState } from 'react'
 import SendOTPForm from './SendOTPForm'
 import CheckOTPForm from './CheckOTPForm'
+import { getOtp } from '../../services/authService'
+import { useMutation } from '@tanstack/react-query'
+import toast from 'react-hot-toast'
 
 function AuthContainer() {
+	const {
+		isPending: isSendingOtp,
+		mutateAsync,
+		data: otpResponse,
+	} = useMutation({
+		mutationFn: getOtp,
+	})
+	const sendOtpHandler = async e => {
+		e.preventDefault()
+		try {
+			const data = await mutateAsync({ phoneNumber })
+			toast.success(data.message)
+		} catch (error) {
+			toast.error(error?.response?.data?.message)
+		}
+	}
 	const [step, setStep] = useState(2)
 	const [phoneNumber, setPhoneNumber] = useState('')
 
@@ -14,13 +33,17 @@ function AuthContainer() {
 						setStep={setStep}
 						phoneNumber={phoneNumber}
 						onChange={e => setPhoneNumber(e.target.value)}
+						onSubmit={sendOtpHandler}
+						isSendingOtp={isSendingOtp}
 					/>
 				)
 			case 2:
 				return (
 					<CheckOTPForm
+						onReSendOtp={sendOtpHandler}
 						phoneNumber={phoneNumber}
 						onBack={() => setStep(s => s - 1)}
+						otpResponse={otpResponse}
 					/>
 				)
 			default:
