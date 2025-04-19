@@ -8,7 +8,7 @@ import { Toaster } from 'react-hot-toast'
 import CompleteProfile from './pages/CompleteProfile'
 import Home from './pages/Home'
 import OwnerDashboard from './pages/OwnerDashboard'
-import AppLayout from './ui/AppLayout'
+import OwnerLayout from './features/owner/OwnerLayout'
 import NotFound from './pages/NotFound'
 import Projects from './pages/Projects'
 import Project from './pages/Project'
@@ -28,7 +28,7 @@ function App() {
 							path="/complete-profile"
 							element={<CompleteProfile />}
 						/>
-						<Route path="/owner" element={<AppLayout />}>
+						<Route path="/owner" element={<OwnerLayout />}>
 							<Route
 								index
 								element={<Navigate to="dashboard" replace />}
