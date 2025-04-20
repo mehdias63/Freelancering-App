@@ -13,6 +13,7 @@ import NotFound from './pages/NotFound'
 import Projects from './pages/Projects'
 import Project from './pages/Project'
 import { DarkModeProvider } from './context/DarkModeContext'
+import FreelancerDashboard from './pages/FreelancerDashboard'
 
 const queryClient = new QueryClient()
 
@@ -36,6 +37,12 @@ function App() {
 							<Route path="dashboard" element={<OwnerDashboard />} />
 							<Route path="projects" element={<Projects />} />
 							<Route path="projects/:id" element={<Project />} />
+						</Route>
+						<Route path="/freelancer">
+							<Route
+								path="dashboard"
+								element={<FreelancerDashboard />}
+							/>
 						</Route>
 						<Route path="/" element={<Home />} />
 						<Route path="*" element={<NotFound />} />

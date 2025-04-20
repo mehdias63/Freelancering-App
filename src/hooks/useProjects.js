@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { geProjectsApi } from '../services/projectService'
+import { getProjectsApi } from '../services/projectService'
 import { useLocation } from 'react-router-dom'
 
 export default function useProjects() {
@@ -9,7 +9,7 @@ export default function useProjects() {
 
 	const { data, isLoading } = useQuery({
 		queryKey: ['projects', queryObject],
-		queryFn: () => geProjectsApi(search),
+		queryFn: () => getProjectsApi(search),
 	})
 
 	const { projects } = data || {}
