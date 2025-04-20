@@ -1,6 +1,6 @@
 import { HiCollection, HiHome } from 'react-icons/hi'
 import AppLayout from '../../ui/AppLayout'
-import { CustomNavLink } from '../../ui/CustomNavLink'
+import CustomNavLink from '../../ui/CustomNavLink'
 import Sidebar from '../../ui/Sidebar'
 
 function FreelancerLayout() {
